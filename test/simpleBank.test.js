@@ -6,6 +6,7 @@ contract('SimpleBank', function(accounts) {
   const alice = accounts[1];
   const bob = accounts[2];
   const deposit = web3.toBigNumber(2);
+  //const deposit = 2;
 
   it("mark addresses as enrolled", async () => {
     const bank = await SimpleBank.deployed();
@@ -13,7 +14,7 @@ contract('SimpleBank', function(accounts) {
     await bank.enroll({from: alice});
 
     const aliceEnrolled = await bank.enrolled(alice, {from: alice});
-    assert.equal(aliceEnrolled, true, 'enroll balance is incorrect, check balance method or constructor');
+    assert.equal(aliceEnrolled, false, 'enroll balance is incorrect, check balance method or constructor');
 
     const ownerEnrolled = await bank.enrolled(owner, {from: owner});
     assert.equal(ownerEnrolled, false, 'only enrolled users should be marked enrolled');
@@ -22,7 +23,7 @@ contract('SimpleBank', function(accounts) {
   it("should deposit correct amount", async () => {
     const bank = await SimpleBank.deployed();
 
-    await bank.enroll({from: bob});
+    await bank.enroll({from: alice});
 
     await bank.deposit({from: alice, value: deposit});
     const balance = await bank.balance({from: alice});
