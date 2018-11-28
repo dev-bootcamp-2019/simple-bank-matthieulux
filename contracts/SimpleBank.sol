@@ -51,16 +51,9 @@ contract SimpleBank {
   /// @return The users enrolled status
   // Emit the appropriate event
   function enroll() public returns (bool) {
+    enrolled[msg.sender] = true;
     emit LogEnrolled(msg.sender);
   }
-
-  /// @notice Checks whether a customer is enrolled with the bank
-  /// @return boolean
-  /*
-  function enroll() public returns (bool) {
-    emit LogEnrolled(msg.sender);
-  }
-  */
 
   /// @notice Deposit ether into bank
   /// @return The balance of the user after the deposit is made
