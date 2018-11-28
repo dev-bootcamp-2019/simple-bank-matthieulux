@@ -6,7 +6,6 @@ contract('SimpleBank', function(accounts) {
   const alice = accounts[1];
   const bob = accounts[2];
   const deposit = web3.toBigNumber(2);
-  //const deposit = 2;
 
   it("mark addresses as enrolled", async () => {
     const bank = await SimpleBank.deployed();
